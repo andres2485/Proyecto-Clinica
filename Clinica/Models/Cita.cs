@@ -1,0 +1,68 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+
+namespace Clinica.Models
+{
+    public class Cita
+    {
+        public int Id { get; set; }
+
+      //  [Required]
+        //[StringLength(15, MinimumLength = 9)]
+       // public String Rut { get; set; }
+
+       // [Required]
+        //[StringLength(25, MinimumLength = 5)]
+        //public String Nombre { get; set; }
+
+       // [Required]
+        //[StringLength(25, MinimumLength = 5)]
+        //public String Apellido { get; set; }
+
+        [Required]
+      
+        public DateTime Fecha { get; set; }
+
+
+       
+        public int IdOdontologo { get; set; }
+       
+        public virtual Odontologo Odontologo { get; set; }  // cambiar por la relacion
+                                                            // guarda el ID en bd y no el nombre 
+       
+        
+        public int IdPaciente { get; set; }
+        
+        public virtual Paciente Paciente { get; set; }
+       
+        public int IdTratamiento { get; set; }
+       
+        public virtual Tratamiento Tratamiento { get; set; }
+
+
+
+
+
+        [Required(ErrorMessage = "Por favor, introduzca su número de teléfono")]
+
+
+        [Range(100000000, 999999999, ErrorMessage = "Teléfono debe contener 9 dígitos")]
+
+        public int Telefono { get; set; }
+
+        [Required]
+        [StringLength(25, MinimumLength = 5)]
+        public String Motivo { get; set; }
+
+
+        public virtual ICollection<PacienteCita> RegistrosPC { get; set; }  // paciente cita
+        public virtual ICollection<Odontologo> Odontologos { get; set; }
+
+        public virtual ICollection<Paciente> Pacientes { get; set; }
+
+        public virtual ICollection<Tratamiento> Tratamientos { get; set; }
+
+    }
+
+}
